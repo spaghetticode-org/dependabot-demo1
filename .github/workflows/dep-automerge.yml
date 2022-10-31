@@ -1,0 +1,21 @@
+name: dep-auto-merge
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/debug-action@v2
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: spaghetticode/action-dependabot-auto-merge@d276d96bd9373ed99a879caa93d341e57b9fc781
+        with:
+          min-approvals: 2
+          target: minor
+          github-token: ${{ secrets.ANDREA_GITHUB_TOKEN }}
+          github-token-user: spaghetticode
+          github-token1: ${{ secrets.ARTURO_GITHUB_TOKEN }}
+          github-token1-user: arturolonghi
+          heroku-token: ${{secrets.HEROKU_TOKEN }}
+          heroku-release-app: solidith-staging
